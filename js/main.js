@@ -139,3 +139,20 @@ function actualizarNumerito() {
     numerito.innerText = nuevoNumerito;
 
 }
+
+function mostrar_posicion( posicion ) {
+    
+    let lat = posicion.coords.latitude;
+    let long = posicion.coords.longitude;
+    let key = "271dffa7877b698107df9f25e1341308";
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}&units=metric&lang=es`)
+        .then( response => response.json())
+        .then( data => {
+            console.log(data);
+            document.footer.innerHTML = `<p>Temp: ${data.main.temp}</p>
+                                        <p>Clima: ${data.weather[0].description}</p>`
+        } )
+}
+
+navigator.geolocation.getCurrentPosition( mostrar_posicion );
