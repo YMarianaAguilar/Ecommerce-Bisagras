@@ -90,6 +90,15 @@ function eliminarDelCarrito(e) {
 botonVaciar.addEventListener("click", vaciarCarrito);
 
 function vaciarCarrito() {
+
+    Toastify({
+        text:"Ya no tienes productos agregados.",
+        duration: 2000,
+        style: {
+            background: "linear-gradient(to right, #b01a00, #c9963d)",
+        }
+
+    }).showToast();
     
     productosEnCarrito.length = 0;
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
